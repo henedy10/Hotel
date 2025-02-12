@@ -1,0 +1,745 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-weight: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --main-color: #C19B76;
+  --second-color: #131313;
+  --text-color: #828282;
+  --section-padding: 40px;
+}
+
+body {
+  font-family: 'Dancing Script', cursive;
+  font-family: 'Gilda Display', serif;
+  font-family: 'Jomhuria', serif;
+  font-family: 'Open Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Work Sans', sans-serif;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+}
+
+.blur{
+  transition: 0.5s;
+}
+
+/* start header */
+.header {
+  background-color: var(--second-color);
+  color: white;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.5s;
+}
+
+.header .container .logo {
+  text-align: center;
+  padding: 2px;
+}
+
+.header .container .logo h3 {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+}
+
+.header .container .logo p {
+  font-size: 8px;
+  text-transform: uppercase;
+}
+
+.header .container .head{
+  display: flex;
+  align-items: center;
+}
+
+.header .container .nav {
+  display: flex;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+@media (min-width:992px) {
+
+  .header .container i,
+  .header .container ul i {
+    display: none;
+  }
+}
+
+.header .container ul {
+  display: flex;
+  transition: 0.6s;
+}
+
+.header .container ul li {
+  margin-right: 30px;
+  font-size: 16px;
+  text-transform: capitalize;
+  color: var(--text-color);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.header .container ul li:hover,
+.header .container ul li.active {
+  color: white;
+}
+
+.header .container .profile {
+  display: flex;
+  text-transform: capitalize;
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: var(--main-color);
+  padding: 7px 10px;
+  max-height: 80%;
+}
+
+.header .container .profile .img{
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+
+}
+
+.header .container .profile .img img{
+  height: 30px;
+}
+
+.header .container .profile .text{
+  font-family: serif;
+  letter-spacing: 1.6px;
+  padding: 5px;
+  font-size: 12px;
+}
+
+@media (max-width:992px) {
+  .header .container {
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .header .container .logo {
+    margin-bottom: 15px;
+  }
+
+  .header .container ul {
+    flex-direction: column;
+    position: absolute;
+    right: -210px;
+    top: 0;
+    padding: 20px 20px 0;
+    background-color: var(--second-color);
+    z-index: 3;
+  }
+
+  .header .container ul i {
+    font-size: 18px;
+    text-align: right;
+    color: var(--text-color);
+    transition: 0.3s;
+    cursor: pointer;
+  }
+
+  .header .container ul i:hover {
+    color: white;
+  }
+
+  .header .container ul li {
+    margin-bottom: 35px;
+    font-size: 18px;
+    margin-right: 100px;
+  }
+
+  .header .container ul li.active {
+    margin-top: 15px;
+  }
+
+  .header .container .profile {
+    margin: 15px auto 15px -18px;
+  }
+}
+
+.header .container span i {
+  font-size: 25px;
+  cursor: pointer;
+}
+
+/* end header */
+
+/* start landing-page */
+.landing-page {
+  background-image: url(../images/account1.jpeg);
+  background-size: cover;
+}
+
+.landing-page .overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  padding: 100px 0;
+  z-index: 2;
+}
+
+.landing-page .overlay .account {
+  font-size: 60px;
+  font-family: serif;
+  color: white;
+  text-transform: capitalize;
+  text-align: center;
+  letter-spacing: 2px;
+  padding: 20px;
+  z-index: 5;
+}
+
+/* end landing-page */
+
+/* start profile */
+
+.profile .container .user{
+  display: flex;
+  margin-bottom: 30px;
+}
+
+@media (max-width:768px) {
+  .profile .container .user{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profile .container .filter ul{
+    justify-content: center;
+  }
+
+  .profile .container .table .delete_acc{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.profile .container .user .img{
+  margin-top: -60px;
+  margin-right: 20px;
+  max-width: 120px;
+}
+
+.profile .container .user .img img{
+  width: 120px;
+  border: 2px solid white;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px 1px rgb(100,100,100,0.3);
+  margin-bottom: 5px;
+}
+
+.profile .container .user .img .edit{
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile .container .user .img .edit button,
+.profile .container .table table tbody td button{
+  border: none;
+  background-color: transparent;
+  color: var(--main-color);
+  font-size: 15px;
+  text-transform: capitalize;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: 0.3s
+}
+
+.profile .container .user .img .edit button:hover {
+  color: var(--second-color);
+}
+
+.profile .container .text .user_name{
+  display: flex;
+  margin-top: 10px ;
+}
+
+.profile .container .text .user_name div{
+  margin-right: 10px;
+  font-size: 24px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.profile .container .text .log_out button{
+  border: none;
+  background-color: transparent;
+  text-transform: capitalize;
+  font-size: 18px;
+  font-family: serif;
+  cursor: pointer;
+}
+
+.profile .container .text .log_out i {
+  font-size: 14px;
+  color: var(--main-color);
+  margin-left: 5px;
+}
+
+.profile .container .filter ul{
+  display: flex;
+}
+
+.profile .container .filter ul li,
+.profile .container .table .delete_acc button{
+  background-color: var(--second-color);
+  color: white;
+  font-size: 18px;
+  margin-right: 20px;
+  padding: 7px 10px;
+  text-transform: capitalize;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.3S;
+}
+
+.profile .container .table .delete_acc button{
+  border: none;
+  margin-bottom: var(--section-padding);
+}
+
+.profile .container .filter ul li:hover,
+.profile .container .filter ul li.active,
+.profile .container .table .delete_acc button:hover{
+  background-color: var(--main-color);
+}
+
+.profile .container .filter ul li:hover,
+.profile .container .table .delete_acc button:hover {
+  background-color: var(--main-color);
+  transform: scale(0.93);
+}
+
+.profile .container .box{
+  display: none;
+}
+
+.profile .container table{
+  width: 100%;
+  margin-top: 30px;
+  border-spacing: 0 20px;
+}
+
+.profile .container table td{
+  padding: 15px 0;
+  margin-bottom: 15px;
+}
+
+.profile .container .dashboard{
+  margin-bottom: var(--section-padding);
+}
+
+.profile .container .dashboard table td{
+  text-align: center;
+}
+
+.profile .container .table table tbody td:not(:last-of-type){
+  padding-left: 15px;
+}
+
+.profile .container .table table tbody td:last-of-type {
+  text-align: center;
+}
+
+.profile .container table thead{
+  background-color: var(--second-color);
+  color: white;
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
+.profile .container table tbody tr{
+  background-color: #f2f2f2;
+}
+
+.profile .container .table table tbody td:first-child{
+  color: var(--text-color);
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+.profile .container .table table tbody td:nth-child(2){
+  font-size: 16px;
+}
+/* end profile */
+
+/* start tabs */
+.edit_tabs {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 450px;
+  padding: 50px 30px;
+  background-color: var(--second-color);
+  color: white;
+  border-radius: 15px;
+  z-index: 10;
+  display: none;
+}
+
+@media(max-width:767px){
+.edit_tabs {
+  width: 85%;
+}
+
+}
+
+.edit_tabs .tab{
+  display: none;
+}
+
+.edit_tabs .tab form{
+  display: flex;
+  flex-direction: column;
+}
+
+.edit_tabs .tab form label{
+  text-transform: capitalize;
+  font-size: 16px;
+  color: var(--text-color);
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.edit_tabs .tab form input{
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #f1f1f1;
+  background-color: #f9f9f9;
+  color: var(--main-color);
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.edit_tabs .btns{
+  display: flex;
+  justify-content: center;
+}
+
+.edit_tabs .btns .button,
+.edit_tabs .btns input[type="submit"]{
+  background-color: var(--main-color);
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 20px 20px 0 0;
+  padding: 7px 10px;
+  text-transform: capitalize;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: 0.3S;
+  width: 68.25px;
+  height: 34.7px;
+}
+
+.edit_tabs .btns .button:hover,
+.edit_tabs .btns input[type="submit"]:hover{
+  transform: scale(0.9);
+}
+/* end tabs */
+
+/* start footer_contact */
+.contact_footer {
+  background: var(--second-color);
+  width: 100%;
+  position: absolute;
+  color: white;
+  padding: 70px;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+@media (max-width:991px) {
+  .contact_footer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact_footer .footer-content {
+    margin-bottom: 50px;
+  }
+
+  .contact_footer .footer-content:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.contact_footer .footer-content h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-family: serif;
+  letter-spacing: 2px;
+}
+
+.contact_footer .footer-content p {
+  font-size: 16px;
+  color: var(--text-color);
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+}
+
+.contact_footer .footer-content ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 5px;
+}
+
+.contact_footer .footer-content ul li {
+  text-transform: capitalize;
+  transition: 0.3s;
+}
+
+.contact_footer .footer-content ul li.active,
+.contact_footer .footer-content ul li:hover {
+  color: var(--main-color);
+}
+
+.contact_footer .footer-content .icons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.contact_footer .footer-content a {
+  text-decoration: none;
+  color: white;
+}
+
+.contact_footer .footer-content a i {
+  color: white;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.contact_footer .footer-content a i.instagram:hover {
+  color: rgb(212, 6, 161);
+}
+
+.contact_footer .footer-content a i.facebook:hover,
+.contact_footer .footer-content a i.linkedin:hover {
+  color: rgb(22, 22, 194);
+}
+
+.contact_footer .footer-content a i.pinterest:hover {
+  color: red;
+}
+
+.contact_footer .footer-content a i.x:hover {
+  color: gray;
+}
+
+.contact_footer .footer-content .subscribe {
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact_footer .footer-content .subscribe input {
+  flex-basis: 59%;
+  padding: 12px;
+  color: var(--main-color);
+  background-color: black;
+  border: none;
+  font-size: 12px;
+}
+
+.contact_footer .footer-content .subscribe button {
+  flex-basis: 39%;
+  padding: 12px;
+  flex: 1;
+  background-color: var(--main-color);
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  cursor: pointer;
+}
+
+/* end footer_contact */
+
+.change_photo_tab,
+.delete_photo_tab,
+.delete_account{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 450px;
+  padding: 50px 30px;
+  background-color: var(--second-color);
+  color: white;
+  border-radius: 15px;
+  z-index: 10;
+  display: none;
+}
+
+.change_photo_tab p,
+.delete_photo_tab p,
+.delete_account p{
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 30px;
+  letter-spacing: 1.6px;
+  text-transform: capitalize;
+}
+
+.change_photo_tab .conf{
+  display: flex;
+  justify-content: center;
+}
+.change_photo_tab button{
+  background-color: var(--main-color) !important;
+  color: white !important;
+  font-size: 16px !important;
+  padding: 7px 14px;
+  border-radius: 3px;
+  border: none;
+  transition: 0.3s;
+}
+
+.delete_photo_tab .btns,
+.delete_account .btns{
+  display: flex;
+  justify-content: center;
+}
+
+.delete_photo_tab .btns button,
+.delete_account .btns button{
+    background-color: var(--main-color) !important;
+  color: white !important;
+  font-size: 16px !important;
+  padding: 7px 14px;
+  border-radius: 3px;
+  border: none;
+  transition: 0.3s;
+}
+
+.delete_photo_tab .btns button:first-child,
+.delete_account .btns button:first-child{
+  margin-right: 10px;
+}
+.delete_photo_tab .btns button:last-child,
+.delete_account .btns button:last-child{
+  margin-left: 10px;
+}
+.delete_account{text-align: center;}
+.delete_account i{
+  color: red;
+  font-size: 70px;
+  margin-bottom: 30px;
+}
+
+.delete_photo_tab .btns button:hover,
+.delete_account .btns button:hover,
+.change_photo_tab button:hover{
+  transform: scale(0.9);
+}
+
+.delete_account form input[type="password"]{
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: 1px solid #f1f1f1;
+  background-color: #f9f9f9;
+  color: var(--main-color);
+  margin-bottom: 30px;
+  border-radius: 10px;
+}
+
+.delete_account form label{
+  text-transform: capitalize;
+  font-size: 16px;
+  color: var(--text-color);
+  padding-bottom: 10px;
+  display: inline-block;
+  float: left;
+}
+/* start loading */
+.loading{
+  background-color: var(--second-color);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animation {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.animation div {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  margin: 0 5px;
+  animation-name: loding;
+  animation-duration: 0.75s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.two {
+  animation-delay: 0.25s;
+}
+
+.three {
+  animation-delay: 0.5s;
+}
+
+@keyframes loding {
+  to {
+    opacity: 0.2;
+    transform: translateY(-40px);
+  }
+}
+/* end loading */
