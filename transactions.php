@@ -206,10 +206,6 @@
       <div class="footer-content">
         <h2>Newsletter</h2>
         <p>24 hours a day</p>
-        <div class="subscribe">
-          <input type="email" placeholder="Insert your email" required>
-          <button type="submit">subscribe</button>
-        </div>
       </div>
     </div>
   </div>

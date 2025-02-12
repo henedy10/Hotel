@@ -6,6 +6,7 @@ $email_booking=$emailErr_booking="";
 $roomid_booking=$roomidErr_booking="";
 $checkin_booking=$checkinErr_booking="";
 $checkout_booking=$checkoutErr_booking="";
+$special_booking="";
 
 if(isset($_POST['submit-booking'])){
       if(empty($_POST["username-booking"])){
@@ -56,11 +57,18 @@ if(isset($_POST['submit-booking'])){
         $checkout_booking=$_POST["check-out-booking"];
     }
 
-    // if($usernameErr_booking==""&&$passwordErr_booking==""&&$emailErr_booking==""&&$roomidErr_booking==""&&$checkinErr_booking==""&&$checkout_booking==""){
+    if($usernameErr_booking=="" && $passwordErr_booking=="" && $emailErr_booking=="" && $roomidErr_booking=="" && $checkinErr_booking=="" && $checkoutErr_booking==""){
+      $sql_booking="SELECT *FROM account WHERE password = '$password_booking' AND name = '$username_booking' AND email='$email_booking'";
+      $result_booking= mysqli_query($connect,$sql_booking);
+      if(mysqli_num_rows($result_booking)>0){
+          header("Location:transactions.php");
+      }
+      else{
+          $special_booking="This account is not exist! Check your info ";
+      }
+      }
 
-    // }
-
-  }
+}
     function test_input_booking($data){
       $data=htmlspecialchars($data);
       $data=trim($data);
@@ -139,7 +147,9 @@ if(isset($_POST['submit-booking'])){
               <li>contact</li>
             </a>
           </ul>
-          <button>book now</button>
+          <form action="account.php" method="post">
+            <button style="background-color: green; border:none; padding : 10px; border-radius:5px; color:white; cursor:pointer;" type="submit" name="book">book now</button>
+          </form>
         </div>
       </div>
     </div>
@@ -249,6 +259,7 @@ if(isset($_POST['submit-booking'])){
               </div>
             </div>
             <input type="submit" value="book" name="submit-booking">
+            <span style="color: red;"><?php echo $special_booking; ?></span>
           </form>
         </div>
       </div>
