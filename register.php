@@ -71,12 +71,12 @@ if(isset($_POST["sign_up"])){
             $result= mysqli_query($connect,$sql);
             if(mysqli_num_rows($result)>0){
                 $row=mysqli_fetch_assoc($result);
-                if($row['name']==$name_signup)
-                  $nameErr_signup="This name is exist,already!";
-                else if($row['email']==$email_signup)
-                  $emailErr_signup="This email is exist,already!";
-                else 
-                  $passwordErr_signup="This password is already in use. Enter another password.";
+                    if($row['name']==$name_signup)
+                        $nameErr_signup="This name is exist,already!";
+                    else if($row['email']==$email_signup)
+                        $emailErr_signup="This email is exist,already!";
+                    else 
+                        $passwordErr_signup="This password is already in use. Enter another password.";
             }
             else{
                 $sql="INSERT INTO account (name,email,password,phone,national_id) VALUES ('$name_signup','$email_signup','$password_signup','$phone_signup','$na_id_signup')";

@@ -61,7 +61,7 @@ include "subscribe.php";
               <img src="../Hotel/images/profile.jpg" alt="">
             </div>
             <div class="text">
-              <h4>my account</h4>
+              <h4><a href="profile.php">my account</a></h4>
             </div>
           </div>
         </div>

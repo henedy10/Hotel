@@ -115,13 +115,13 @@
 
             <div class="na-id">
               <label for="na-id">national id</label>
-              <input type="number" id="na-id" name="na-id-signup" value="<?php echo $na_id_signup ?>" >
+              <input type="text" id="na-id" name="na-id-signup" value="<?php echo $na_id_signup ?>" >
               <span style="color: red;"><?php echo $na_idErr_signup; ?></span>
             </div>
 
             <div class="phone">
               <label for="phone">phone number</label>
-              <input type="number" id="phone" name="phone-signup" placeholder="+20" value="<?php echo $phone_signup ?>" >
+              <input type="text" id="phone" name="phone-signup" placeholder="+20" value="<?php echo $phone_signup ?>" >
               <span style="color: red;"><?php echo $phoneErr_signup; ?></span>
             </div>
 

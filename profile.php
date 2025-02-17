@@ -1,3 +1,4 @@
+<?php include "db.php" ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,7 +52,9 @@
                 <li>contact</li>
               </a>
             </ul>
-            <button>book now</button>
+            <form action="account.php" method="post">
+            <button style="background-color: green; border:none; padding : 10px; border-radius:5px; color:white; cursor:pointer;" type="submit" name="book">book now</button>
+          </form>
           </div>
         </div>
       </div>
@@ -236,10 +239,6 @@
         <div class="footer-content">
           <h2>Newsletter</h2>
           <p>24 hours a day</p>
-          <div class="subscribe">
-            <input type="email" placeholder="Insert your email" required>
-            <button type="submit">subscribe</button>
-          </div>
         </div>
       </div>
     </div>

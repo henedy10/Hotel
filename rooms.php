@@ -75,7 +75,7 @@
         <span>
           <ul class="filter">
             <li data-type=".all" class="active">all rooms</li>
-            <li data-type=".small">small room</li>
+            <li data-type=".small" >small room</li>
             <li data-type=".double">double room</li>
             <li data-type=".luxury">luxury room</li>
             <li data-type=".view">room with view</li>
@@ -94,6 +94,7 @@
             $sql_small_rooms="SELECT *FROM smallrooms WHERE id='$i'";
             $result_small_rooms=mysqli_query($connect,$sql_small_rooms);
             $products_small_rooms = mysqli_fetch_assoc($result_small_rooms);
+            if(!$products_small_rooms["booked"]):
           ?>
           <div class="box all small">
             <div class="img">
@@ -116,10 +117,10 @@
                 <p><?php echo  $products_small_rooms["area"] ?> ft</p>
               </div>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel molestie nisl. Duis ac mi leo.</p>
-              <a href="../Hotel/booking.php" id="<?php echo $products_small_rooms["id_room"] ?>">
+              <a href="../Hotel/booking.php" id="<?php echo $products_small_rooms["id_room"] .$products_small_rooms["id"]?>">
                 <div class="book brown">
                   <p>book now for <?php echo $products_small_rooms["price"] ?>$</p>
-                  <div class="i"><?php echo $products_small_rooms["id_room"] ?></div>
+                  <div class="i"><?php echo $products_small_rooms["id_room"] .$products_small_rooms["id"]?></div>
                 </div>
               </a>
               <hr>
@@ -132,16 +133,17 @@
             </div>
 
           </div>
+          <?php endif;?>
           <?php endfor; ?>
 
 <!-- ******************************************************* -->
 
 
-      <?php for($i=1;$i<11;$i++):
+      <?php for($i=1;$i<4;$i++):
                     $sql_double_rooms="SELECT *FROM doublerooms WHERE id='$i'";
                     $result_double_rooms=mysqli_query($connect,$sql_double_rooms);
                     $products_double_rooms = mysqli_fetch_assoc($result_double_rooms);
-        
+                    if(!$products_double_rooms["booked"]):
         ?>
         <div class="box all double">
           <div class="img">
@@ -164,10 +166,10 @@
               <p><?php echo $products_double_rooms["area"]?> ft</p>
             </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel molestie nisl. Duis ac mi leo.</p>
-            <a href="../Hotel/booking.php" id="<?php echo $products_double_rooms["id_room"]?>">
+            <a href="../Hotel/booking.php" id="<?php echo $products_double_rooms["id_room"].$products_double_rooms["id"]?>">
               <div class="book brown">
                 <p>book now for <?php echo $products_double_rooms["price"]?>$</p>
-                <div class="i"><?php echo $products_double_rooms["id_room"]?></div>
+                <div class="i"><?php echo $products_double_rooms["id_room"].$products_double_rooms["id"]?></div>
               </div>
             </a>
             <hr>
@@ -179,6 +181,7 @@
             </div>
           </div>
         </div>
+        <?php endif; ?>
       <?php endfor; ?>
 
 <!-- ************************************************************************ -->
@@ -188,6 +191,7 @@
           $sql_luxury_rooms="SELECT *FROM luxuryrooms WHERE id='$i'";
           $result_luxury_rooms=mysqli_query($connect,$sql_luxury_rooms);
           $products_luxury_rooms = mysqli_fetch_assoc($result_luxury_rooms);
+          if(!$products_luxury_rooms["booked"]):
       ?>
           <div class="box all luxury">
             <div class="img">
@@ -210,10 +214,10 @@
                 <p><?php echo $products_luxury_rooms["area"] ?> ft</p>
               </div>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel molestie nisl. Duis ac mi leo.</p>
-              <a href="../Hotel/booking.php" id="<?php echo $products_luxury_rooms["id_room"] ?>">
+              <a href="../Hotel/booking.php" id="<?php echo $products_luxury_rooms["id_room"].$products_luxury_rooms["id"] ?>">
                 <div class="book brown">
                   <p>book now for <?php echo $products_luxury_rooms["price"] ?>$</p>
-                  <div class="i"><?php echo $products_luxury_rooms["id_room"] ?></div>
+                  <div class="i"><?php echo $products_luxury_rooms["id_room"].$products_luxury_rooms["id"] ?></div>
                 </div>
               </a>
               <hr>
@@ -225,6 +229,7 @@
               </div>
             </div>
           </div>
+          <?php endif ;?>
         <?php endfor; ?>
 
 <!-- *********************************************************** -->
@@ -233,6 +238,7 @@
           $sql_view_rooms="SELECT *FROM viewrooms WHERE id='$i'";
           $result_view_rooms=mysqli_query($connect,$sql_view_rooms);
           $products_view_rooms = mysqli_fetch_assoc($result_view_rooms);
+          if(!$products_view_rooms["booked"]):
       ?>
           <div class="box all view">
             <div class="img">
@@ -255,10 +261,10 @@
                 <p><?php echo $products_view_rooms["area"] ?> ft</p>
               </div>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel molestie nisl. Duis ac mi leo.</p>
-              <a href="../Hotel/booking.php" id="<?php echo $products_view_rooms["id_room"] ?>">
+              <a href="../Hotel/booking.php" id="<?php echo $products_view_rooms["id_room"].$products_view_rooms["id"] ?>">
                 <div class="book black">
                   <p>book now for <?php echo $products_view_rooms["price"] ?>$</p>
-                  <div class="i"><?php echo $products_view_rooms["id_room"] ?></div>
+                  <div class="i"><?php echo $products_view_rooms["id_room"].$products_view_rooms["id"] ?></div>
                 </div>
               </a>
               <hr>
@@ -270,6 +276,8 @@
               </div>
             </div>
           </div>
+
+        <?php endif; ?>
         <?php endfor; ?>
 
 <!-- ************************************* -->
@@ -278,6 +286,7 @@
           $sql_family_rooms="SELECT *FROM familyrooms WHERE id='$i'";
           $result_family_rooms=mysqli_query($connect,$sql_family_rooms);
           $products_family_rooms = mysqli_fetch_assoc($result_family_rooms);
+          if(!$products_family_rooms["booked"]):
       ?>
 
           <div class="box all family">
@@ -301,10 +310,10 @@
                 <p><?php echo $products_family_rooms["area"] ?> ft</p>
               </div>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel molestie nisl. Duis ac mi leo.</p>
-              <a href="../Hotel/booking.php" id="<?php echo $products_family_rooms["id_room"] ?>">
+              <a href="../Hotel/booking.php" id="<?php echo $products_family_rooms["id_room"].$products_family_rooms["id"] ?>">
                 <div class="book brown">
                   <p>book now for <?php echo $products_family_rooms["price"] ?>$</p>
-                  <div class="i"><?php echo $products_family_rooms["id_room"] ?></div>
+                  <div class="i"><?php echo $products_family_rooms["id_room"].$products_family_rooms["id"] ?></div>
                 </div>
               </a>
               <hr>
@@ -316,6 +325,7 @@
               </div>
             </div>
           </div>
+        <?php endif;?>
         <?php endfor;?>
 
 <!-- ************************************************* -->
@@ -324,6 +334,7 @@
           $sql_apartments="SELECT *FROM apartments WHERE id='$i'";
           $result_apartments=mysqli_query($connect,$sql_apartments);
           $products_apartments = mysqli_fetch_assoc($result_apartments);
+          if(!$products_apartments["booked"]):
     ?>
         <div class="box all apartment">
           <div class="img">
@@ -346,10 +357,10 @@
               <p><?php echo $products_apartments["area"] ?> ft</p>
             </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel molestie nisl. Duis ac mi leo.</p>
-            <a href="../Hotel/booking.php" id="<?php echo $products_apartments["id_room"] ?>">
+            <a href="../Hotel/booking.php" id="<?php echo $products_apartments["id_room"].$products_apartments["id"] ?>">
               <div class="book brown">
                 <p>book now for <?php echo $products_apartments["price"] ?>$</p>
-                <div class="i"><?php echo $products_apartments["id_room"] ?></div>
+                <div class="i"><?php echo $products_apartments["id_room"].$products_apartments["id"] ?></div>
               </div>
             </a>
             <hr>
@@ -361,6 +372,7 @@
             </div>
           </div>
         </div>
+      <?php endif; ?>
       <?php endfor; ?>
       </div>
     </div>

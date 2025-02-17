@@ -1,5 +1,79 @@
 <?php 
+session_start();
   include "db.php";
+  $name_transaction=$nameErr_transaction="";
+  $cardnum_transaction=$cardnumErr_transaction="";
+  $expire_transaction=$expireErr_transaction="";
+  $special="";
+
+  if(isset($_POST['submit-booking'])){
+    if(empty($_POST['name-transaction'])){
+      $nameErr_transaction="Your name is required, please !";
+    }
+    else{
+      $name_transaction=$_POST['name-transaction'];
+      if(!preg_match("/^[a-zA-Z0-9-']*$/",$name_transaction)){
+        $nameErr_transaction="Your name is invalid";
+      }
+    }
+
+    if(empty($_POST['card_number-transaction'])){
+      $cardnumErr_transaction="This field is required,please!";
+    }
+    else{
+      $cardnum_transaction=$_POST['card_number-transaction'];
+      if(!preg_match("/[0-9]{16}/",$cardnum_transaction)){
+        $cardnumErr_transaction="allow numbers only[0-9] and 16 digits only";
+      }
+    }
+
+    if(empty($_POST['exp-transaction'])){
+      $expireErr_transaction="This field is required,please!";
+    }
+    else{
+      $expire_transaction=$_POST['exp-transaction'];
+      if(!preg_match("/[0-9]{2}\/[0-9]{2}/",$expire_transaction)){
+        $expireErr_transaction="There is an error";
+      }
+    }
+    
+    if($nameErr_transaction==""&&$cardnumErr_transaction==""&&$expireErr_transaction==""){
+      $username=$_SESSION['username'];
+      $room=$_SESSION['roomid'];
+      $checkout=$_SESSION['checkout'];
+      $checkin=$_SESSION['checkin'];
+      $sql = "INSERT INTO booking (name,room,checkin,checkout) VALUES ('$username','$room','$checkin','$checkout')";
+      $result=mysqli_query($connect,$sql);
+      if($result){
+        if($room[0]=='S'){
+          $sql_booking="UPDATE smallrooms SET booked = '1' WHERE id = '$room[1]'";
+           $sql_result= mysqli_query($connect,$sql_booking);
+        }
+        else if($room[0]=='D'){
+          $sql_booking="UPDATE doublerooms SET booked = '1' WHERE id = '$room[1]'";
+           $sql_result= mysqli_query($connect,$sql_booking);
+        }
+        else if($room[0]=='F'){
+          $sql_booking="UPDATE familyrooms SET booked = '1' WHERE id = '$room[1]'";
+           $sql_result= mysqli_query($connect,$sql_booking);
+        }
+        else if($room[0]=='L'){
+          $sql_booking="UPDATE luxuryrooms SET booked = '1' WHERE id = '$room[1]'";
+           $sql_result= mysqli_query($connect,$sql_booking);
+        }
+        else if($room[0]=='A'){
+        $sql_booking="UPDATE apartments SET booked = '1' WHERE id = '$room[1]'";
+           $sql_result= mysqli_query($connect,$sql_booking);
+        }
+        else{
+      $sql_booking="UPDATE viewrooms SET booked = '1' WHERE id = '$room[1]'";
+           $sql_result= mysqli_query($connect,$sql_booking);
+        }
+        $special="the process recorded successfully";
+      }
+    }
+
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,8 +151,10 @@
             <h1>Please complete the transaction...</h1>
           </div>
         </div>
+
+
         <div class="transaction">
-          <form action="../Hotel/index.php" method="post">
+          <form action="transactions.php" method="post">
             <div class="member">transaction</div>
             <p>payment</p>
             <div class="saved">
@@ -99,25 +175,29 @@
               </div>
               <div class="card_name">
                 <label for="#name">card holder name</label>
-                <input type="text" id="name" name="name-transaction">
+                <input type="text" id="name" name="name-transaction" value="<?php echo $name_transaction ?>"> 
+                <span style="color:red; display:block; margin-bottom:5px;"><?php echo $nameErr_transaction ?></span>
               </div>
               <div class="card_details">
                 <div class="card_number">
                   <label for="#card_number">card number</label>
-                  <input type="text" id="card_number" name="card_number-transaction" placeholder="xxxx xxxx xxxx xxxx">
+                  <input type="text" id="card_number" name="card_number-transaction" placeholder="xxxx xxxx xxxx xxxx" value="<?php echo $cardnum_transaction ?>">
+                  <span style="color:red"><?php echo $cardnumErr_transaction ?></span>
                 </div>
-                <div class="cvc">
+                <!-- <div class="cvc">
                   <label for="#cvc">CVC</label>
                   <input type="text" id="cvc" name="cvc-transaction" placeholder="CVC">
-                </div>
+                </div> -->
                 <div class="exp">
                   <label for="#exp">Exp.date</label>
-                  <input type="text" id="exp" name="exp-transaction" placeholder="MM/YY">
+                  <input type="text" id="exp" name="exp-transaction" placeholder="MM/YY" value="<?php echo $expire_transaction?>">
+                  <span style="color:red"><?php echo $expireErr_transaction ?></span>
                 </div>
               </div>
             </div>
             <input type="submit" value="book" name="submit-booking">
           </form>
+          <span style="color: green; display:block; margin:auto; font-weight:bolder; "><?php echo $special; ?></span>
         </div>
       </div>
     </div>

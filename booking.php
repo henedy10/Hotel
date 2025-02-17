@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include "db.php";
 $username_booking=$usernameErr_booking="";
 $password_booking=$passwordErr_booking="";
@@ -61,6 +62,10 @@ if(isset($_POST['submit-booking'])){
       $sql_booking="SELECT *FROM account WHERE password = '$password_booking' AND name = '$username_booking' AND email='$email_booking'";
       $result_booking= mysqli_query($connect,$sql_booking);
       if(mysqli_num_rows($result_booking)>0){
+        $_SESSION['username']=$username_booking;
+        $_SESSION['checkin']=$checkin_booking;
+        $_SESSION['checkout']=$checkout_booking;
+        $_SESSION['roomid']=$roomid_booking;
           header("Location:transactions.php");
       }
       else{
@@ -75,21 +80,6 @@ if(isset($_POST['submit-booking'])){
       $data=stripslashes($data);
       return $data;
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ?>
@@ -196,48 +186,85 @@ if(isset($_POST['submit-booking'])){
                 <label for="#room-id">room id</label>
                 <select name="room-id-booking" id="room-id">
                   <option value="">Select one of them</option>
+
                   <optgroup label="* Small Rooms">
-                    <option value="S1">S1</option>
-                    <option value="S2">S2</option>
-                    <option value="S3">S3</option>
-                    <option value="S4">S4</option>
-                    <option value="S5">S5</option>
-                    <option value="S6">S6</option>
+                      <?php for($i=1;$i<7;$i++):
+                          $sql_small_rooms="SELECT *FROM smallrooms WHERE id='$i'";
+                          $result_small_rooms=mysqli_query($connect,$sql_small_rooms);
+                          $products_small_rooms = mysqli_fetch_assoc($result_small_rooms);
+                          if(!$products_small_rooms["booked"]):
+                      ?>
+                      
+                      <option value="<?php echo $products_small_rooms["id_room"] .$products_small_rooms["id"]?>"><?php echo $products_small_rooms["id_room"] .$products_small_rooms["id"]?></option>
+                      <?php endif; ?>
+                      <?php endfor;?>
                   </optgroup>
+
                   <optgroup label="* Double Rooms">
-                    <option value="D1">D1</option>
-                    <option value="D2">D2</option>
-                    <option value="D3">D3</option>
-                    <option value="D4">D4</option>
-                    <option value="D5">D5</option>
-                    <option value="D6">D6</option>
+                      <?php for($i=1;$i<4;$i++):
+                              $sql_double_rooms="SELECT *FROM doublerooms WHERE id='$i'";
+                              $result_double_rooms=mysqli_query($connect,$sql_double_rooms);
+                              $products_double_rooms = mysqli_fetch_assoc($result_double_rooms);
+                              if(!$products_double_rooms["booked"]):
+                      ?>
+                      
+                      <option value="<?php echo $products_double_rooms["id_room"] .$products_double_rooms["id"]?>"><?php echo $products_double_rooms["id_room"] .$products_double_rooms["id"]?></option>
+                      <?php endif;?>
+                      <?php endfor;?>
                   </optgroup>
+
                   <optgroup label="* Luxury Rooms">
-                    <option value="L1">L1</option>
-                    <option value="L2">L2</option>
-                    <option value="L3">L3</option>
+                      <?php for($i=1;$i<4;$i++):
+                              $sql_luxury_rooms="SELECT *FROM luxuryrooms WHERE id='$i'";
+                              $result_luxury_rooms=mysqli_query($connect,$sql_luxury_rooms);
+                              $products_luxury_rooms = mysqli_fetch_assoc($result_luxury_rooms);
+                              if(!$products_luxury_rooms["booked"]):
+                      ?>
+                      
+                      <option value="<?php echo $products_luxury_rooms["id_room"] .$products_luxury_rooms["id"]?>"><?php echo $products_luxury_rooms["id_room"] .$products_luxury_rooms["id"]?></option>
+                      <?php endif;?>
+                      <?php endfor;?>
                   </optgroup>
+
                   <optgroup label="* Rooms With View">
-                    <option value="V1">V1</option>
-                    <option value="V2">V2</option>
-                    <option value="V3">V3</option>
+                      <?php for($i=1;$i<4;$i++):
+                              $sql_view_rooms="SELECT *FROM viewrooms WHERE id='$i'";
+                              $result_view_rooms=mysqli_query($connect,$sql_view_rooms);
+                              $products_view_rooms = mysqli_fetch_assoc($result_view_rooms);
+                              if(!$products_view_rooms["booked"]):
+                      ?>
+                      
+                      <option value="<?php echo $products_view_rooms["id_room"] .$products_view_rooms["id"]?>"><?php echo $products_view_rooms["id_room"] .$products_view_rooms["id"]?></option>
+                      <?php endif;?>
+                      <?php endfor;?>
                   </optgroup>
+
                   <optgroup label="* Family Rooms">
-                    <option value="F1">F1</option>
-                    <option value="F2">F2</option>
-                    <option value="F3">F3</option>
-                    <option value="F4">F4</option>
-                    <option value="F5">F5</option>
-                    <option value="F6">F6</option>
+                      <?php for($i=1;$i<4;$i++):
+                              $sql_family_rooms="SELECT *FROM familyrooms WHERE id='$i'";
+                              $result_family_rooms=mysqli_query($connect,$sql_family_rooms);
+                              $products_family_rooms = mysqli_fetch_assoc($result_family_rooms);
+                              if(!$products_family_rooms["booked"]):
+                      ?>
+                      
+                      <option value="<?php echo $products_family_rooms["id_room"] .$products_family_rooms["id"]?>"><?php echo $products_family_rooms["id_room"] .$products_family_rooms["id"]?></option>
+                      <?php endif;?>
+                      <?php endfor;?>
                   </optgroup>
+
                   <optgroup label="* Apartments">
-                    <option value="A1">A1</option>
-                    <option value="A2">A2</option>
-                    <option value="A3">A3</option>
-                    <option value="A4">A4</option>
-                    <option value="A5">A5</option>
-                    <option value="A6">A6</option>
+                      <?php for($i=1;$i<4;$i++):
+                              $sql_apartments="SELECT *FROM apartments WHERE id='$i'";
+                              $result_apartments=mysqli_query($connect,$sql_apartments);
+                              $products_apartments = mysqli_fetch_assoc($result_apartments);
+                              if(!$products_apartments["booked"]):
+                      ?>
+                      
+                      <option value="<?php echo $products_apartments["id_room"] .$products_apartments["id"]?>"><?php echo $products_apartments["id_room"] .$products_apartments["id"]?></option>
+                      <?php endif;?>
+                      <?php endfor;?>
                   </optgroup>
+
                 </select>
                 <span style="color: red;"><?php echo $roomidErr_booking?></span>
               </div>
