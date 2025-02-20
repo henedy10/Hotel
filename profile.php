@@ -1,4 +1,14 @@
-<?php include "db.php" ?>
+<?php 
+session_start();
+include "db.php" ;
+$name=$_SESSION['username-login'];
+$sql="SELECT *FROM account WHERE name='$name'";
+$result = mysqli_query($connect,$sql);
+$rows=mysqli_fetch_assoc($result);
+$sql_booking="SELECT *FROM booking WHERE name='$name'";
+$result_booking = mysqli_query($connect,$sql_booking);
+$rows_booking=mysqli_fetch_assoc($result_booking);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,8 +91,7 @@
             </div>
             <div class="text">
               <div class="user_name">
-                <div class="first_name">abdelrahman</div>
-                <div class="last_name">haroun</div>
+                <div class="first_name"><?php echo  $rows['name'];?></div>
               </div>
               <div class="log_out">
                 <button>log out <i class="fa-solid fa-right-from-bracket"></i></button>
@@ -100,38 +109,38 @@
               <tbody>
                 <tr>
                   <td>email</td>
-                  <td>abdelrahman@gmail.com</td>
+                  <td><?php echo $rows['email']; ?></td>
                   <td>
                     <button data-tab="email_tab">edit</button>
                   </td>
                 </tr>
                 <tr>
                   <td>username</td>
-                  <td>se_abdelrahman</td>
+                  <td><?php echo $rows['name']; ?></td>
                   <td>
                     <button data-tab="username_tab">edit</button>
                   </td>
                 </tr>
                 <tr>
                   <td>user id</td>
-                  <td>01</td>
+                  <td><?php echo $rows['id']; ?></td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>phone number</td>
-                  <td>+20 127 489 2442</td>
+                  <td><?php echo $rows['phone']; ?></td>
                   <td>
                     <button data-tab="phone_tab">edit</button>
                   </td>
                 </tr>
                 <tr>
                   <td>national id</td>
-                  <td>30408101800117</td>
+                  <td><?php echo $rows['national_id']; ?></td>
                   <td></td>
                 </tr>
                 <tr>
                   <td>password</td>
-                  <td>********</tdtyle=>
+                  <td><input type="password" name="password" value="<?php echo $rows['password']; ?> " disabled style="background-color:transparent; border:none;"></tdtyle=>
                   <td>
                     <button data-tab="password_tab">edit</button>
                   </td>
@@ -151,38 +160,18 @@
                   <td>room id</td>
                   <td>check in</td>
                   <td>check out</td>
-                  <td>price</td>
+
                 </tr>
               </thead>
               <tbody>
+                <?php for($i=0;$i< mysqli_num_rows($result_booking);$i++):?>
                 <tr>
-                  <td>01</td>
-                  <td>L3</td>
-                  <td>2/7/2023</td>
-                  <td>12/7/2023</td>
-                  <td>40$</td>
+                  <td><?php echo $rows_booking['id']; ?></td>
+                  <td><?php echo $rows_booking['room']; ?></td>
+                  <td><?php echo $rows_booking['checkin']; ?></td>
+                  <td><?php echo $rows_booking['checkout']; ?></td>
                 </tr>
-                <tr>
-                  <td>01</td>
-                  <td>D5</td>
-                  <td>7/8/2023</td>
-                  <td>27/8/2023</td>
-                  <td>29$</td>
-                </tr>
-                <tr>
-                  <td>01</td>
-                  <td>V1</td>
-                  <td>23/9/2023</td>
-                  <td>30/9/2023</td>
-                  <td>80$</td>
-                </tr>
-                <tr>
-                  <td>01</td>
-                  <td>S1</td>
-                  <td>1/12/2023</td>
-                  <td>15/12/2023</td>
-                  <td>20$</td>
-                </tr>
+                <?php endfor;?>
               </tbody>
             </table>
           </div>

@@ -184,7 +184,7 @@ if(isset($_POST['submit-booking'])){
             <div class="room_details">
               <div class="room-id">
                 <label for="#room-id">room id</label>
-                <select name="room-id-booking" id="room-id">
+                <select name="room-id-booking" id="room-id" style="width: 214px;">
                   <option value="">Select one of them</option>
 
                   <optgroup label="* Small Rooms">
@@ -195,7 +195,7 @@ if(isset($_POST['submit-booking'])){
                           if(!$products_small_rooms["booked"]):
                       ?>
                       
-                      <option value="<?php echo $products_small_rooms["id_room"] .$products_small_rooms["id"]?>"><?php echo $products_small_rooms["id_room"] .$products_small_rooms["id"]?></option>
+                      <option value="<?php echo $products_small_rooms["id_room"] .$products_small_rooms["id"]?>"><?php echo $products_small_rooms["id_room"] .$products_small_rooms["id"]." price (".$products_small_rooms["price"]."$)"?></option>
                       <?php endif; ?>
                       <?php endfor;?>
                   </optgroup>
@@ -208,7 +208,7 @@ if(isset($_POST['submit-booking'])){
                               if(!$products_double_rooms["booked"]):
                       ?>
                       
-                      <option value="<?php echo $products_double_rooms["id_room"] .$products_double_rooms["id"]?>"><?php echo $products_double_rooms["id_room"] .$products_double_rooms["id"]?></option>
+                      <option value="<?php echo $products_double_rooms["id_room"] .$products_double_rooms["id"]?>"><?php echo $products_double_rooms["id_room"] .$products_double_rooms["id"]." price (".$products_double_rooms["price"]."$)"?></option>
                       <?php endif;?>
                       <?php endfor;?>
                   </optgroup>
@@ -221,7 +221,7 @@ if(isset($_POST['submit-booking'])){
                               if(!$products_luxury_rooms["booked"]):
                       ?>
                       
-                      <option value="<?php echo $products_luxury_rooms["id_room"] .$products_luxury_rooms["id"]?>"><?php echo $products_luxury_rooms["id_room"] .$products_luxury_rooms["id"]?></option>
+                      <option value="<?php echo $products_luxury_rooms["id_room"] .$products_luxury_rooms["id"]?>"><?php echo $products_luxury_rooms["id_room"] .$products_luxury_rooms["id"]." price (".$products_luxury_rooms["price"]."$)"?></option>
                       <?php endif;?>
                       <?php endfor;?>
                   </optgroup>
@@ -234,7 +234,7 @@ if(isset($_POST['submit-booking'])){
                               if(!$products_view_rooms["booked"]):
                       ?>
                       
-                      <option value="<?php echo $products_view_rooms["id_room"] .$products_view_rooms["id"]?>"><?php echo $products_view_rooms["id_room"] .$products_view_rooms["id"]?></option>
+                      <option value="<?php echo $products_view_rooms["id_room"] .$products_view_rooms["id"]?>"><?php echo $products_view_rooms["id_room"] .$products_view_rooms["id"]." price (".$products_view_rooms["price"]."$)"?></option>
                       <?php endif;?>
                       <?php endfor;?>
                   </optgroup>
@@ -247,7 +247,7 @@ if(isset($_POST['submit-booking'])){
                               if(!$products_family_rooms["booked"]):
                       ?>
                       
-                      <option value="<?php echo $products_family_rooms["id_room"] .$products_family_rooms["id"]?>"><?php echo $products_family_rooms["id_room"] .$products_family_rooms["id"]?></option>
+                      <option value="<?php echo $products_family_rooms["id_room"] .$products_family_rooms["id"]?>"><?php echo $products_family_rooms["id_room"] .$products_family_rooms["id"]." price (".$products_family_rooms["price"]."$)"?></option>
                       <?php endif;?>
                       <?php endfor;?>
                   </optgroup>
@@ -260,17 +260,13 @@ if(isset($_POST['submit-booking'])){
                               if(!$products_apartments["booked"]):
                       ?>
                       
-                      <option value="<?php echo $products_apartments["id_room"] .$products_apartments["id"]?>"><?php echo $products_apartments["id_room"] .$products_apartments["id"]?></option>
+                      <option value="<?php echo $products_apartments["id_room"] .$products_apartments["id"]?>"><?php echo $products_apartments["id_room"] .$products_apartments["id"]." price (".$products_apartments["price"]."$)"?></option>
                       <?php endif;?>
                       <?php endfor;?>
                   </optgroup>
 
                 </select>
                 <span style="color: red;"><?php echo $roomidErr_booking?></span>
-              </div>
-              <div class="price">
-                <label for="room_price">price</label>
-                <input type="text" name="" id="room_price" value="20$" disabled>
               </div>
             </div>
             <div class="check">

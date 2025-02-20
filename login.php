@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include "db.php";
 $username_login=$usernameErr_login="";
 $password_login=$passwordErr_login="";
@@ -25,8 +26,10 @@ if(isset($_POST['log_in'])){
     if($usernameErr_login==""&&$passwordErr_login==""){
         $sql_login="SELECT *FROM account WHERE password = '$password_login' AND name = '$username_login'";
         $result_login= mysqli_query($connect,$sql_login);
+        $rows_login= mysqli_fetch_assoc($result_login);
         if(mysqli_num_rows($result_login)>0){
-            header("Location:index.php");
+            $_SESSION['username-login']= $rows_login['name'];
+            header("Location:profile.php");
         }
         else{
             $special_login="This account is not exist!";

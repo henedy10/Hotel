@@ -45,34 +45,43 @@ session_start();
       $sql = "INSERT INTO booking (name,room,checkin,checkout) VALUES ('$username','$room','$checkin','$checkout')";
       $result=mysqli_query($connect,$sql);
       if($result){
-        if($room[0]=='S'){
-          $sql_booking="UPDATE smallrooms SET booked = '1' WHERE id = '$room[1]'";
-           $sql_result= mysqli_query($connect,$sql_booking);
+        switch($room[0]){
+          case 'S':
+             $sql_booking="UPDATE smallrooms SET booked = '1' WHERE id = '$room[1]'";
+             $sql_result= mysqli_query($connect,$sql_booking);
+             break;
+          
+          case 'D':
+             $sql_booking="UPDATE doublerooms SET booked = '1' WHERE id = '$room[1]'";
+             $sql_result= mysqli_query($connect,$sql_booking);
+             break;
+          
+          case 'F':
+            $sql_booking="UPDATE familyrooms SET booked = '1' WHERE id = '$room[1]'";
+             $sql_result= mysqli_query($connect,$sql_booking);
+             break;
+          
+          case 'L':
+            $sql_booking="UPDATE luxuryrooms SET booked = '1' WHERE id = '$room[1]'";
+             $sql_result= mysqli_query($connect,$sql_booking);
+             break;
+          
+          case 'A':
+          $sql_booking="UPDATE apartments SET booked = '1' WHERE id = '$room[1]'";
+             $sql_result= mysqli_query($connect,$sql_booking);
+             break;
+          
+          default:
+        $sql_booking="UPDATE viewrooms SET booked = '1' WHERE id = '$room[1]'";
+             $sql_result= mysqli_query($connect,$sql_booking);
+             break;
         }
-        else if($room[0]=='D'){
-          $sql_booking="UPDATE doublerooms SET booked = '1' WHERE id = '$room[1]'";
-           $sql_result= mysqli_query($connect,$sql_booking);
-        }
-        else if($room[0]=='F'){
-          $sql_booking="UPDATE familyrooms SET booked = '1' WHERE id = '$room[1]'";
-           $sql_result= mysqli_query($connect,$sql_booking);
-        }
-        else if($room[0]=='L'){
-          $sql_booking="UPDATE luxuryrooms SET booked = '1' WHERE id = '$room[1]'";
-           $sql_result= mysqli_query($connect,$sql_booking);
-        }
-        else if($room[0]=='A'){
-        $sql_booking="UPDATE apartments SET booked = '1' WHERE id = '$room[1]'";
-           $sql_result= mysqli_query($connect,$sql_booking);
-        }
-        else{
-      $sql_booking="UPDATE viewrooms SET booked = '1' WHERE id = '$room[1]'";
-           $sql_result= mysqli_query($connect,$sql_booking);
-        }
+        
         $special="the process recorded successfully";
+        
       }
     }
-
+  
   }
 ?>
 <!DOCTYPE html>
