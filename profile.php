@@ -1,4 +1,5 @@
 <?php 
+
 session_start();
 include "db.php" ;
 $name=$_SESSION['username-login'];
@@ -9,43 +10,6 @@ $sql_booking="SELECT *FROM booking WHERE name='$name'";
 $result_booking = mysqli_query($connect,$sql_booking);
 $rows_booking=mysqli_fetch_assoc($result_booking);
 
-$name=$nameErr="";
-$email=$emailErr="";
-$special="";
-
-if(isset($_POST['edit_email'])){
-  if(empty($_POST['username']))
-  $nameErr="This field is required";
-  else{
-    $username=$_POST['username'];
-    if(!preg_match("/^[A-Za-z0-9-']*$/",$username)){
-      $nameErr="Your name is Invalid";
-    }
-  }
-  
-  if(empty($_POST['email']))
-  $emailErr="This field is required";
-  else{
-    $email=$_POST['email'];
-    if(!filter_var($email,FILTER_VALIDATE_EMAIL))
-    $emailErr="Your email is Invalid";
-  }
-
-  if($nameErr==""&&$emailErr==""){
-    $sql="SELECT *FROM account WHERE name='$username'";
-    $result=mysqli_query($connect,$sql);
-    if(mysqli_num_rows($result)<=0)
-    $special="Check your username , it has an error!";
-  else{
-    $sql="UPDATE account SET email='$email'";
-    $result=mysqli_query($connect,$sql);
-    if($result){
-      $special="Your edit is done successfully";
-    }
-
-    }
-  }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -283,10 +247,8 @@ if(isset($_POST['edit_email'])){
         <form action="../Hotel/profile.php" method="post">
           <label for="username">Username</label>
           <input type="text" name="username" id="username">
-          <span style="color: red;"><?php echo $nameErr ?></span>
           <label for="new_email">new email</label>
           <input type="text" name="new_email" id="new_email">
-          <span style="color: red;"><?php echo $nameErr ?></span>
           <div class="btns">
             <input type="submit" name="edit_email" value="edit">
             <div class="button" data-close="email_tab">close</div>
