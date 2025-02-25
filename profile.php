@@ -204,7 +204,7 @@ if(isset($_POST['edit_email'])){
               <tbody>
                 <?php for($i=0;$i< mysqli_num_rows($result_booking);$i++):?>
                 <tr>
-                  <td><?php echo $rows_booking['id']; ?></td>
+                  <td><?php echo $rows['id']; ?></td>
                   <td><?php echo $rows_booking['room']; ?></td>
                   <td><?php echo $rows_booking['checkin']; ?></td>
                   <td><?php echo $rows_booking['checkout']; ?></td>

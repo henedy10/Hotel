@@ -62,11 +62,15 @@ let blur = document.querySelector(".blur");
 let body = document.querySelector("body");
 
 function apper_tab(){
-  document.querySelector(`.${this.dataset.tab}`).style.display = "block";
-  parent.style.display = "block";
-  blur.style.filter = "blur(2px)";
-  body.style.overflow = "hidden";
+  let tabElement = document.querySelector(`.${this.dataset.tab}`);
+  if (tabElement.style.display !== "block") {
+    tabElement.style.display = "block";
+    parent.style.display = "block";
+    blur.style.filter = "blur(2px)";
+    body.style.overflow = "hidden";
+  }
 };
+
 
 function delete_tab(){
   document.querySelector(`.${this.dataset.close}`).style.display = "none";
