@@ -63,8 +63,8 @@ if(isset($_POST['submit-booking'])){
       $result_booking= mysqli_query($connect,$sql_booking);
       if(mysqli_num_rows($result_booking)>0){
         $_SESSION['username']=$username_booking;
-        $_SESSION['checkin']=$checkin_booking;
-        $_SESSION['checkout']=$checkout_booking;
+        $_SESSION['check-in-booking']=$checkin_booking;
+        $_SESSION['check-out-booking']=$checkout_booking;
         $_SESSION['roomid']=$roomid_booking;
           header("Location:transactions.php");
       }

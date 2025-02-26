@@ -1,5 +1,8 @@
 <?php 
+  session_start();
   include "db.php";
+  $checkout = new DateTime($_SESSION['check-out-booking']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,10 +93,13 @@
   <div class="start_rooms">
     <div class="rooms">
       <div class="container">
-          <?php for($i=1;$i<7;$i++):
+          <?php 
+          for($i=1;$i<7;$i++):
             $sql_small_rooms="SELECT *FROM smallrooms WHERE id='$i'";
             $result_small_rooms=mysqli_query($connect,$sql_small_rooms);
             $products_small_rooms = mysqli_fetch_assoc($result_small_rooms);
+            if($checkout> new DateTime())
+            $products_small_rooms["booked"]=false;
             if(!$products_small_rooms["booked"]):
           ?>
           <div class="box all small">
