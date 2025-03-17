@@ -9,7 +9,14 @@ $rows=mysqli_fetch_assoc($result);
 $sql_booking="SELECT *FROM booking WHERE name='$name'";
 $result_booking = mysqli_query($connect,$sql_booking);
 $rows_booking=mysqli_fetch_assoc($result_booking);
-
+if(isset($_POST['delete'])){
+  $sql_delete= "DELETE FROM account WHERE name='$name' ";
+  $result_delete= mysqli_query($connect,$sql_delete);
+  if($result_delete){
+    header("location:index.php");
+    session_destroy();
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -150,9 +157,11 @@ $rows_booking=mysqli_fetch_assoc($result_booking);
                 <tr>
               </tbody>
             </table>
-            <div class="delete_acc">
-              <button>delete account</button>
-            </div>
+            <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+              <div class="delete_acc">
+                <button type="submit" name="delete">delete account</button>
+              </div>
+            </form>
           </div>
           <div class="dashboard box">
             <table>
